@@ -1,0 +1,1 @@
+0 6 * * 1-5 python /app/arxiv_download.py >> /app/log/cron.log 2>&1
