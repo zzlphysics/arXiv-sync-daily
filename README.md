@@ -1,3 +1,3 @@
-# Arxiv Paper Downloader
+# arXiv-sync-daily
 
-This project is used to download the latest papers from all categories in arXiv, including metadata, source files, and PDF files. It can be run using Docker for scheduled tasks.
+This project is used for synchronizing the latest metadata, source files, and PDF files of papers from all categories in arXiv. It can be run using Docker for scheduled tasks.
