@@ -13,13 +13,13 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the current directory contents into the container at /app
-COPY . .
+COPY ./arxiv_download.py .
 
 # Install cron
 RUN apt-get update && apt-get -y install cron
 
 # Add crontab file in the cron directory
-ADD crontab /etc/cron.d/my-cron
+COPY my-cron /etc/cron.d/my-cron
 
 # RUN echo "0 6 * * 1-5 python /app/arxiv_download.py >> /app/log/cron.log 2>&1" | tee  -a /etc/cron.d/my-cron
 
@@ -32,6 +32,12 @@ RUN crontab /etc/cron.d/my-cron
 # Create the log file to be able to run tail
 RUN touch /app/log/cron.log
 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Run the entrypoint script on container startup
+ENTRYPOINT ["/entrypoint.sh"]
+
 # Run the command on container startup
-# CMD python arxiv_download.py >> /app/log/cron.log 2>&1
-CMD cron && tail -f /app/log/cron.log
+# RUN python arxiv_download.py >> /app/log/cron.log 2>&1
+CMD []

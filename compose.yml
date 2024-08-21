@@ -3,6 +3,6 @@ services:
   arxiv-dl:
     build: .
     volumes:
-      - ./Downloads:/app/Downloads
+      - /arxiv_dataset:/app/Downloads
       - ./log:/app/log
     restart: unless-stopped
